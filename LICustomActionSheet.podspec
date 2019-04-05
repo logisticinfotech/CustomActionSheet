@@ -21,15 +21,15 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/vvdodiya/LICustomActionSheet'
+  s.homepage         = 'https://github.com/logisticinfotech/CustomActionSheet'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'vvdodiya' => 'v.v.dodiya101@gmail.com' }
-  s.source           = { :git => 'https://github.com/vvdodiya/LICustomActionSheet.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/logisticinfotech/CustomActionSheet.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
-
+  s.ios.deployment_target = '10.0'
+  s.swift_version = '4.2'
   s.source_files = 'LICustomActionSheet/Classes/**/*'
   
   # s.resource_bundles = {
