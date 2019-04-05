@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'LICustomActionSheet_Example' do
+  pod 'LICustomActionSheet', :path => '../'
+
+  target 'LICustomActionSheet_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
