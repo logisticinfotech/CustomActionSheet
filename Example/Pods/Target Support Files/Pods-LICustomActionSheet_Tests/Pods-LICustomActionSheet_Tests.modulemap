@@ -1,0 +1,6 @@
+framework module Pods_LICustomActionSheet_Tests {
+  umbrella header "Pods-LICustomActionSheet_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

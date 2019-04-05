@@ -1,0 +1,6 @@
+framework module LICustomActionSheet {
+  umbrella header "LICustomActionSheet-umbrella.h"
+
+  export *
+  module * { export * }
+}

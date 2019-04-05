@@ -1,0 +1,16 @@
+PODS:
+  - LICustomActionSheet (0.1.0)
+
+DEPENDENCIES:
+  - LICustomActionSheet (from `../`)
+
+EXTERNAL SOURCES:
+  LICustomActionSheet:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  LICustomActionSheet: 937a99279440e9120fcc44eccab27b15c246ccae
+
+PODFILE CHECKSUM: 2a31c79e33076a40843f7b0d8f762fdee9baf3dd
+
+COCOAPODS: 1.5.3

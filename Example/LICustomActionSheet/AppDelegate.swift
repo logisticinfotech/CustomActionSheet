@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  LICustomActionSheet
 //
-//  Created by vvdodiya on 04/05/2019.
-//  Copyright (c) 2019 vvdodiya. All rights reserved.
+//  Created by Vishal on 04/04/2019.
+//  Copyright (c) 2019 Vishal. All rights reserved.
 //
 
 import UIKit
