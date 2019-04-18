@@ -37,7 +37,7 @@
                                     <outletCollection property="gestureRecognizers" destination="1XP-OD-26P" appends="YES" id="XmW-er-fHa"/>
                                 </connections>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3WC-rA-eqD">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3WC-rA-eqD">
                                 <rect key="frame" x="0.0" y="736" width="414" height="500"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -267,7 +267,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oHn-dU-DZg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="1XP-OD-26P">
                     <connections>
-                        <action selector="tappedOutside:" destination="LAK-To-qnI" id="FuR-fH-Jfi"/>
                         <outlet property="delegate" destination="LAK-To-qnI" id="CSc-nY-yC1"/>
                     </connections>
                 </tapGestureRecognizer>

@@ -21,7 +21,7 @@ public enum ActionSheetType: Int {
     }
 }
 @objc public protocol ConfigureActionSheet {
-    @objc optional func didSelectedActionView(_ objCustomAction : LICustomActionSheetVC, isEmojiSelected:Bool ,index:IndexPath, selectedAction:String)
+    @objc optional func didSelectedActionView(_ objCustomAction : LICustomActionSheetVC, isEmojiSelected:Bool ,index:IndexPath, selectedActionIndex:Int)
 }
 
 public class LICustomActionSheetVC: UIViewController,UIGestureRecognizerDelegate {
@@ -243,7 +243,7 @@ extension LICustomActionSheetVC:UICollectionViewDelegate,UICollectionViewDataSou
                 
                 if (self.delegate != nil)
                 {
-                    self.delegate.didSelectedActionView?(self, isEmojiSelected: true, index: indexPath, selectedAction: "\(self.arrEmoji?.object(at: indexPath.row) as! String)")
+                    self.delegate.didSelectedActionView?(self, isEmojiSelected: true, index: indexPath, selectedActionIndex: indexPath.row)
                 }
                 
             })
@@ -315,7 +315,7 @@ extension LICustomActionSheetVC:UITableViewDelegate,UITableViewDataSource
                     if indexPath.row == arrOtherAction.count + 1
                     {
                         let cell = tableView.dequeueReusableCell(withIdentifier: "LICancelButtonCell", for: indexPath) as! LICancelButtonCell
-                        cell.actionSheetType = self.actionSheetType                        
+                        cell.actionSheetType = self.actionSheetType
                         cell.btnCancel.setTitleColor(cancelButtonTextColor, for: .normal)
                         cell.delegate = self
                         cell.selectionStyle = .none
@@ -338,13 +338,21 @@ extension LICustomActionSheetVC:UITableViewDelegate,UITableViewDataSource
                         else{
                             cell.isRoundCell = "3"
                         }
-                        if(self.arrProfilePicture != nil ){
+                        
+                        //                        if(self.arrProfilePicture != nil ){
+                        //                            cell.imgLogo.isHidden = false
+                        //                            cell.imgLogo.image = UIImage(named: (self.arrProfilePicture[indexPath.row - 1] as! String))
+                        //                        }else{
+                        //                            cell.imgLogo.isHidden = true
+                        //                        }
+                        if(((((self.arrOtherAction[indexPath.row - 1] as! NSDictionary).value(forKey: "icon"))) != nil) && (((self.arrOtherAction[indexPath.row - 1] as! NSDictionary).value(forKey: "icon")) as? String) != nil ){
                             cell.imgLogo.isHidden = false
-                            cell.imgLogo.image = UIImage(named: (self.arrProfilePicture[indexPath.row - 1] as! String))
+                            cell.imgLogo.image = UIImage(named: (((self.arrOtherAction[indexPath.row - 1] as! NSDictionary).value(forKey: "icon")) as! String))
+                            
                         }else{
                             cell.imgLogo.isHidden = true
                         }
-                        cell.lblActionName.text = (self.arrOtherAction[indexPath.row - 1] as! String)
+                        cell.lblActionName.text = (((self.arrOtherAction[indexPath.row - 1] as! NSDictionary).value(forKey: "title")) as! String)
                         
                         return cell
                         
@@ -394,14 +402,23 @@ extension LICustomActionSheetVC:UITableViewDelegate,UITableViewDataSource
                     {
                         cell.isRoundCell = "3"
                     }
-                    if(self.arrProfilePicture != nil ){
+                    if(((((self.arrOtherAction[indexPath.row ] as! NSDictionary).value(forKey: "icon"))) != nil) && (((self.arrOtherAction[indexPath.row ] as! NSDictionary).value(forKey: "icon")) as? String) != nil ){
                         cell.imgLogo.isHidden = false
-                        cell.imgLogo.image = UIImage(named: (self.arrProfilePicture[indexPath.row] as! String))
+                        cell.imgLogo.image = UIImage(named: (((self.arrOtherAction[indexPath.row] as! NSDictionary).value(forKey: "icon")) as! String))
+                        
                     }else{
                         cell.imgLogo.isHidden = true
                     }
+                    cell.lblActionName.text = (((self.arrOtherAction[indexPath.row ] as! NSDictionary).value(forKey: "title")) as! String)
                     
-                    cell.lblActionName.text = (self.arrOtherAction[indexPath.row] as! String)
+                    //                    if(self.arrProfilePicture != nil ){
+                    //                        cell.imgLogo.isHidden = false
+                    //                        cell.imgLogo.image = UIImage(named: (self.arrProfilePicture[indexPath.row] as! String))
+                    //                    }else{
+                    //                        cell.imgLogo.isHidden = true
+                    //                    }
+                    //
+                    //                    cell.lblActionName.text = (self.arrOtherAction[indexPath.row] as! String)
                     
                     return cell
                 }
@@ -469,6 +486,7 @@ extension LICustomActionSheetVC:UITableViewDelegate,UITableViewDataSource
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        print("Didselect call")
         let totalRow = tableView.numberOfRows(inSection: indexPath.section)
         if indexPath.row != totalRow - 1{
             self.animateBackgroundView(isVisible: false)
@@ -479,7 +497,7 @@ extension LICustomActionSheetVC:UITableViewDelegate,UITableViewDataSource
                 self.dismiss(animated: false, completion: {
                     if (self.delegate != nil)
                     {
-                        self.delegate.didSelectedActionView?(self, isEmojiSelected: false, index: indexPath, selectedAction: self.arrOtherAction![indexPath.row] as! String )
+                        self.delegate.didSelectedActionView?(self, isEmojiSelected: false, index: indexPath, selectedActionIndex: indexPath.row )
                     }
                 })
             }
