@@ -72,9 +72,9 @@ public class LICustomActionSheetVC: UIViewController,UIGestureRecognizerDelegate
     //MARK: -
     
     public func loadActionSheet(fromView:UIViewController!, arrEmoji:NSMutableArray?, arrActionData:NSMutableArray?,type:ActionSheetType){
-
+        
         self.actionSheetType = type
-        self.arrOtherAction = arrActionData
+        self.arrOtherAction = arrActionData        
         self.arrEmoji = arrEmoji
         self.delegate = (fromView as! ConfigureActionSheet)
         self.modalPresentationStyle = .overCurrentContext
@@ -405,7 +405,7 @@ extension LICustomActionSheetVC:UITableViewDelegate,UITableViewDataSource
                     }
                     cell.lblActionName.text = (((self.arrOtherAction[indexPath.row ] as! NSDictionary).value(forKey: "title")) as! String)
                     
-                  
+                    
                     return cell
                 }
             }

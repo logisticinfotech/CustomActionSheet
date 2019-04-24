@@ -32,19 +32,17 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.title = "Custom Actionsheet"
     }
-    
     func showEmogi_MediaSheet() -> Void {
-        
         arrActionData = [
             ["icon":"camera","title":"Camera"],
             ["icon":"gallary","title":"Gallary"]
         ]
         arrEmojiData = NSMutableArray.init(array: ["profile_pic1","profile_pic4","profile_pic7","profile_pic2","profile_pic5","profile_pic8","profile_pic3","profile_pic6","profile_pic9","profile_pic10"])
+        let arrActionsImage = ActionSheetConstants.getArrayOfImgMediaOption()
         objShowEmogi_MediaSheet = LICustomActionSheetVC.create()
         objShowEmogi_MediaSheet.actionButtonTextColor = UIColor.blue
         objShowEmogi_MediaSheet.cancelButtonTextColor = UIColor.red
         objShowEmogi_MediaSheet.loadActionSheet(fromView: self, arrEmoji: arrEmojiData,  arrActionData: arrActionData, type: .sectionWise)
-        
     }
     
     func showGetImageActionSheet() -> Void {
@@ -57,7 +55,7 @@ class ViewController: UIViewController {
         
         let arrActionsImage = ActionSheetConstants.getArrayOfImgMediaOption()
         objShowGetImageActionSheet = LICustomActionSheetVC.create()
-        objShowGetImageActionSheet.loadActionSheet(fromView: self, arrEmoji: nil,  arrActionData: arrActionData, type: .regular)
+        objShowGetImageActionSheet.loadActionSheet(fromView: self, arrEmoji: nil, arrActionData: arrActionData, type: .regular)
     }
     
     func showOnlineOfflinePicker() -> Void {
@@ -70,7 +68,7 @@ class ViewController: UIViewController {
         objShowOnlineOfflinePicker = LICustomActionSheetVC.create()
         objShowOnlineOfflinePicker.cancelButtonTextColor = UIColor.red
         objShowOnlineOfflinePicker.actionButtonTextColor = UIColor.green
-        objShowOnlineOfflinePicker.loadActionSheet(fromView: self, arrEmoji: nil, arrActionData: arrActionData, type: .regular)
+        objShowOnlineOfflinePicker.loadActionSheet(fromView: self, arrEmoji: nil,  arrActionData: arrActionData, type: .regular)
     }
     
     func showEmojiPicker() -> Void {
