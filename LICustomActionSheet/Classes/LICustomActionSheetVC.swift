@@ -71,11 +71,10 @@ public class LICustomActionSheetVC: UIViewController,UIGestureRecognizerDelegate
     //MARK: - ViewController Life Cycle
     //MARK: -
     
-    public func loadActionSheet(fromView:UIViewController!, arrEmoji:NSMutableArray?, arrLogoImage :NSMutableArray?, arrActionData:NSMutableArray?,type:ActionSheetType){
-        
+    public func loadActionSheet(fromView:UIViewController!, arrEmoji:NSMutableArray?, arrActionData:NSMutableArray?,type:ActionSheetType){
+
         self.actionSheetType = type
         self.arrOtherAction = arrActionData
-        self.arrProfilePicture = arrLogoImage
         self.arrEmoji = arrEmoji
         self.delegate = (fromView as! ConfigureActionSheet)
         self.modalPresentationStyle = .overCurrentContext
@@ -339,12 +338,7 @@ extension LICustomActionSheetVC:UITableViewDelegate,UITableViewDataSource
                             cell.isRoundCell = "3"
                         }
                         
-                        //                        if(self.arrProfilePicture != nil ){
-                        //                            cell.imgLogo.isHidden = false
-                        //                            cell.imgLogo.image = UIImage(named: (self.arrProfilePicture[indexPath.row - 1] as! String))
-                        //                        }else{
-                        //                            cell.imgLogo.isHidden = true
-                        //                        }
+                        
                         if(((((self.arrOtherAction[indexPath.row - 1] as! NSDictionary).value(forKey: "icon"))) != nil) && (((self.arrOtherAction[indexPath.row - 1] as! NSDictionary).value(forKey: "icon")) as? String) != nil ){
                             cell.imgLogo.isHidden = false
                             cell.imgLogo.image = UIImage(named: (((self.arrOtherAction[indexPath.row - 1] as! NSDictionary).value(forKey: "icon")) as! String))
@@ -411,15 +405,7 @@ extension LICustomActionSheetVC:UITableViewDelegate,UITableViewDataSource
                     }
                     cell.lblActionName.text = (((self.arrOtherAction[indexPath.row ] as! NSDictionary).value(forKey: "title")) as! String)
                     
-                    //                    if(self.arrProfilePicture != nil ){
-                    //                        cell.imgLogo.isHidden = false
-                    //                        cell.imgLogo.image = UIImage(named: (self.arrProfilePicture[indexPath.row] as! String))
-                    //                    }else{
-                    //                        cell.imgLogo.isHidden = true
-                    //                    }
-                    //
-                    //                    cell.lblActionName.text = (self.arrOtherAction[indexPath.row] as! String)
-                    
+                  
                     return cell
                 }
             }
@@ -486,7 +472,6 @@ extension LICustomActionSheetVC:UITableViewDelegate,UITableViewDataSource
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        print("Didselect call")
         let totalRow = tableView.numberOfRows(inSection: indexPath.section)
         if indexPath.row != totalRow - 1{
             self.animateBackgroundView(isVisible: false)
