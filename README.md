@@ -53,8 +53,6 @@ Here,
 
 `cancelButtonTextColor` - color for the cancel button.
 
-## Example
-
 ## Author
 
 ### Vishal Dodiya 
