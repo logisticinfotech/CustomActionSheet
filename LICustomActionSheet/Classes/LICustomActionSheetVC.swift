@@ -85,7 +85,9 @@ public class LICustomActionSheetVC: UIViewController,UIGestureRecognizerDelegate
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tappedOutside))
+        self.viewBackground.addGestureRecognizer(tap)
+
         if(cancelButtonTextColor == nil){
             cancelButtonTextColor = UIColor.gray
         }
@@ -138,15 +140,24 @@ public class LICustomActionSheetVC: UIViewController,UIGestureRecognizerDelegate
     
     /// Show menu with animation
     @objc func showMenu() {
+        UIView.animate(withDuration: 0.0, delay: 0, options: .transitionCurlUp, animations: {
+            self.constTblActionSheetBottomSpace.constant = 0
+            
+            self.view.layoutIfNeeded()
+        }) { (success) in
+            self.view.bringSubviewToFront(self.tblActionSheet)
+        }
         
-        UIView.animate(withDuration: 0.2, delay: 0, options: [.transitionCurlUp],
-                       animations: {
-                        self.constTblActionSheetBottomSpace.constant = 0
-                        
-                        self.view.layoutIfNeeded()
-        }, completion: nil)
     }
-    
+    @objc func tappedOutside() {
+        self.animateBackgroundView(isVisible: false)
+        UIView.animate(withDuration: 0.3, animations: {
+            self.tblActionSheet.frame = CGRect(x: self.tblActionSheet.frame.origin.x, y: UIScreen.main.bounds.height , width: self.tblActionSheet.frame.width, height: self.tblActionSheet.frame.height)
+            self.constTblActionSheetBottomSpace.constant = -self.consTblActionSheetHeight.constant
+        }) { (success) in
+            self.dismiss(animated: false, completion: nil)
+        }
+    }
     //    Gesture Delegate
     private func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if (touch.view?.isDescendant(of: tblActionSheet))! {
@@ -156,15 +167,8 @@ public class LICustomActionSheetVC: UIViewController,UIGestureRecognizerDelegate
     }
     
     //    Action Method
-    @IBAction func tappedOutside(_ sender: Any) {
-        self.animateBackgroundView(isVisible: false)
-        UIView.animate(withDuration: 0.3, animations: {
-            self.tblActionSheet.frame = CGRect(x: self.tblActionSheet.frame.origin.x, y: UIScreen.main.bounds.height , width: self.tblActionSheet.frame.width, height: self.tblActionSheet.frame.height)
-            self.constTblActionSheetBottomSpace.constant = -self.consTblActionSheetHeight.constant
-        }) { (success) in
-            self.dismiss(animated: false, completion: nil)
-        }
-    }
+    
+    
 }
 
 extension LICustomActionSheetVC:DismissViewDelegate{
