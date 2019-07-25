@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LICustomActionSheet'
-  s.version          = '0.1.2'
-  s.summary          = 'A short description of LICustomActionSheet.'
+  s.version          = '0.1.3'
+  s.summary          = 'LICustomActionSheet provide the simple way to use different type of actionsheet.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,45 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+  TODO:
+  
+  1. Import LICustomActionSheet in your class to use LICustomActionsheet:
+  
+  import LICustomActionSheet
+  
+  2. Create object of LICustomActionSheet using create() method like below:
+  
+  var objCustomActionSheet = LICustomActionSheetVC.create()
+  
+  3. To present simplay Call loadActionSheet() using object of LICustomActionSheet:
+  
+  objShowGetImageActionSheet.loadActionSheet(fromView: self, arrEmoji: nil, arrActionData: arrActionData, type: .regular)
+  
+  Here,
+  
+  - fromView : fromView is the object of your object of your class to handle delegate method of  LIActionsheet. This parameter is Required.
+  
+  - arrEmoji: If you want to display Emoji actionsheet than you need to pass array of emoji name and need to add images in the your project.
+  
+  - arrActionData: arrActionData is array of action name which you want to display in the action sheet.
+  
+  - type: you can set type of actionsheet. e.g. regular and sectionWise
+  
+  ## Customization
+  
+  ### Colors
+  
+  `actionButtonTextColor` - standard color for LICustomActionSheet's buttons
+  
+  `cancelButtonTextColor` - color for the cancel button.
+  
+  ## Example
+  
+  ## Author
+  
+  ### Vishal Dodiya
+  @Logistic Infotech Pvt Ltd.
+
                        DESC
 
   s.homepage         = 'https://github.com/logisticinfotech/CustomActionSheet'
